@@ -1,0 +1,57 @@
+﻿@page "/"
+
+@inject WeatherForecastService ForecastService
+@using GridCustomSorting.Data
+<p><b>DxGrid sorts days in alphabetical order</b></p>
+
+<DxGrid Data="@Data">
+   <Columns>
+       <DxGridDataColumn FieldName="Day" 
+                         SortIndex="0"/>
+       <DxGridDataColumn FieldName="Forecast"/>
+       <DxGridDataColumn FieldName="CloudCover"/>
+       <DxGridDataColumn FieldName="TemperatureC"
+                         Caption="Temperature"
+                         Width="120px"/>
+   </Columns>
+</DxGrid>
+
+<p></p>
+<p><b>DxGrid sorts days of week in order (Sunday, Monday, etc.)</b></p>
+
+<DxGrid Data="@Data" CustomSort="OnCustomSort">
+   <Columns>
+       <DxGridDataColumn FieldName="Day" 
+                         SortMode="GridColumnSortMode.Custom"
+                         SortIndex="0"/>
+       <DxGridDataColumn FieldName="Forecast"/>
+       <DxGridDataColumn FieldName="CloudCover"/>
+       <DxGridDataColumn FieldName="TemperatureC"
+                         Caption="Temperature"
+                         Width="120px"/>
+   </Columns>
+   </DxGrid>
+
+
+
+@code {
+    List<WeatherForecast> Data { get; set; }
+
+    protected override void OnInitialized() {
+        Data = ForecastService.GetForecast();
+    }
+    void OnCustomSort(GridCustomSortEventArgs e) {
+
+        if (e.FieldName == "Day") {
+            e.Handled = true;
+            DayOfWeek day1= Enum.Parse<DayOfWeek>(e.Value1 as string);
+            DayOfWeek day2= Enum.Parse<DayOfWeek>(e.Value2 as string);
+            int day1index = Convert.ToInt32(day1);
+            int day2index = Convert.ToInt32(day2);
+            if (day1index > day2index)
+                e.Result = 1;
+            else if (day1index < day2index)
+                e.Result = -1;
+        }
+    }
+}
