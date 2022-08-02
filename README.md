@@ -9,6 +9,8 @@
 DevExpress Blazor [Grid](https://docs.devexpress.com/Blazor/403143/grid) allows you to implement custom logic to sort data. 
 This example demonstrates two grids that display a weather forecast for a week. The first grid sorts the <b>Day<b> column values by value: days are displayed in alphabetical order. The second grid uses the `Custom` sort mode: days of week are listed in order (Sunday, Monday, etc.).
 
+![Grids - Different Sort Modes](images/grids.png)
+
 <!-- default file list -->
 ## Files to look at:
 
