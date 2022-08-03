@@ -14,7 +14,7 @@ This example demonstrates two grids that display a weather forecast for a week. 
 <!-- default file list -->
 ## Files to look at:
 
-* [Index.razor](./GridCustomSorting/Pages/Index.razor)
+* [Index.razor](./GridCustomSorting/GridCustomSorting/Pages/Index.razor)
 <!-- default file list end -->
 ## Documentation 
 
