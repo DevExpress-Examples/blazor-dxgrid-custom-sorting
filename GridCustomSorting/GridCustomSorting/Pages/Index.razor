@@ -41,17 +41,11 @@
         Data = ForecastService.GetForecast();
     }
     void OnCustomSort(GridCustomSortEventArgs e) {
-
         if (e.FieldName == "Day") {
             e.Handled = true;
-            DayOfWeek day1= Enum.Parse<DayOfWeek>(e.Value1 as string);
-            DayOfWeek day2= Enum.Parse<DayOfWeek>(e.Value2 as string);
-            int day1index = Convert.ToInt32(day1);
-            int day2index = Convert.ToInt32(day2);
-            if (day1index > day2index)
-                e.Result = 1;
-            else if (day1index < day2index)
-                e.Result = -1;
+            DayOfWeek day1 = Enum.Parse<DayOfWeek>(e.Value1.ToString());
+            DayOfWeek day2 = Enum.Parse<DayOfWeek>(e.Value2.ToString());
+            e.Result = day1.CompareTo(day2);
         }
     }
 }
